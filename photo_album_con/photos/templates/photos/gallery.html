@@ -31,9 +31,12 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">All</li>
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
+
+                        {% for category in categories  %}
+
+                        <li class="list-group-item">{{category.name}}</li>
+
+                        {% endfor %}
 
                         <a href="{% url 'add' %}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
                     </ul>
@@ -43,46 +46,21 @@
             <div class="col-md-9">
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img src="https://files.worldwildlife.org/wwfcmsprod/images/Lion_WWFGIFTS_cover_2020/magazine_small/2wafu1bmcz_b21fc8e6.jpeg" class="image-thumbail" alt="...">
-                            <div class="card-body">
-                                <small>Category: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 1 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
+                    {% for photo in photos  %}
 
                     <div class="col-md-4">
                         <div class="card my-2">
-                            <img src="..." class="image-thumbail" alt="...">
+                            <img src="{{photo.image.url}}" class="image-thumbail" alt="...">
                             <div class="card-body">
-                                <small>Category: Pets</small>
+                                <small>Category: {{photo.category.name}}</small>
                             </div>
-                            <a href="{% url 'photo' 2 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img src="..." class="image-thumbail" alt="...">
-                            <div class="card-body">
-                                <small>Category: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 3 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img src="..." class="image-thumbail" alt="...">
-                            <div class="card-body">
-                                <small>Category: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 4 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                    </div>
-
+                    {% empty %}
+                    <h3>No photos...</h3>
+                    {% endfor %}
                 </div>
             </div>
         </div>

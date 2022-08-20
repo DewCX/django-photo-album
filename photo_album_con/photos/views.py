@@ -1,15 +1,25 @@
 from django.shortcuts import render
+from .models import Category, Photo
 
 
 
 #Homepage
 def gallery(request):
-    return render(request, 'photos/gallery.html')
+    categories = Category.objects.all()
+    photos = Photo.objects.all()
+    context = {
+        'categories':categories,
+        'photos':photos
+    }
+
+
+    return render(request, 'photos/gallery.html', context)
 
 
 #Detail page
 def viewPhoto(request, pk):
-    return render(request, 'photos/photo_detail.html')
+    photo = Photo.objects.get(id = pk)
+    return render(request, 'photos/photo_detail.html', {'photo':photo})
 
 
 #Adding new photo into gallery
