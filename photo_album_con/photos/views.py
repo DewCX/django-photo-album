@@ -6,6 +6,7 @@ from .models import Category, Photo
 #Homepage
 def gallery(request):
 
+#Filter By Categories   
     category = request.GET.get('category')
     if category == None:
         photos = Photo.objects.all()    
