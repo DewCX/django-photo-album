@@ -13,6 +13,7 @@
     <style>
         .image-thumbail{
             height: 200px;
+            object-fit: cover;
         }
     </style>
 
@@ -33,6 +34,8 @@
                         <li class="list-group-item">An item</li>
                         <li class="list-group-item">A second item</li>
                         <li class="list-group-item">A third item</li>
+
+                        <a href="{% url 'add' %}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
                     </ul>
                 </div>
 
@@ -42,11 +45,11 @@
 
                     <div class="col-md-4">
                         <div class="card my-2">
-                            <img src="..." class="image-thumbail" alt="...">
+                            <img src="https://files.worldwildlife.org/wwfcmsprod/images/Lion_WWFGIFTS_cover_2020/magazine_small/2wafu1bmcz_b21fc8e6.jpeg" class="image-thumbail" alt="...">
                             <div class="card-body">
                                 <small>Category: Pets</small>
                             </div>
-                            <a href="{% url 'photo' %} class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' 1 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
 
@@ -56,7 +59,7 @@
                             <div class="card-body">
                                 <small>Category: Pets</small>
                             </div>
-                            <a href="{% url 'photo' %} class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' 2 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
 
@@ -66,7 +69,7 @@
                             <div class="card-body">
                                 <small>Category: Pets</small>
                             </div>
-                            <a href="{% url 'photo' %} class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' 3 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
 
@@ -76,7 +79,7 @@
                             <div class="card-body">
                                 <small>Category: Pets</small>
                             </div>
-                            <a href="{% url 'photo' %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' 4 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
 
