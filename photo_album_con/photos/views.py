@@ -60,14 +60,15 @@ def registerUser(request):
 @login_required(login_url='login')
 def gallery(request):
 
-#Filter By Categories   
+#Filter By Categories  
+    user = request.user
     category = request.GET.get('category')
     if category == None:
-        photos = Photo.objects.all()    
+        photos = Photo.objects.filter(category__user = user)    
     else:
-        photos = Photo.objects.filter(category__name=category)
+        photos = Photo.objects.filter(category__name=category, category__user = user)
 
-    categories = Category.objects.all()
+    categories = Category.objects.filter(user=user)
     context = {
         'categories':categories,
         'photos':photos
@@ -89,7 +90,9 @@ def viewPhoto(request, pk):
 #Adding new photo into gallery
 @login_required(login_url='login')
 def addPhoto(request):
-    categories = Category.objects.all()
+    user = request.user
+
+    categories = user.category_set.all()
 
     if request.method == 'POST':
         data = request.POST
@@ -98,7 +101,9 @@ def addPhoto(request):
         if data ['category'] != 'none':
             category = Category.objects.get(id = data['category'])
         elif data['category_new'] != '':
-            category, created = Category.objects.get_or_create(name=data['category_new'])
+            category, created = Category.objects.get_or_create(
+                user=user,
+                name=data['category_new'])
         else:
             category = None
 
